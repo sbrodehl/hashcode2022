@@ -7,6 +7,8 @@ Solutions and code for the Practice Round of [Hash Code 2022](https://codingcomp
 
 ![A picture of a pizzeria with a 'One Pizza is all you need' sign.](pizzeria.png)
 
+## Problem
+
 ### Introduction
 
 ![A picture of menu with six ingredients to choose from and a 'What do you like on pizza?' text.](pizza-poll.png)
