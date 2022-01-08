@@ -1,7 +1,6 @@
 import logging
 
 from .basesolver import BaseSolver
-from .delivery import Delivery
 
 LOGGER = logging.getLogger(__name__)
 
