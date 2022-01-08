@@ -1,7 +1,5 @@
 import logging
 
-import numpy as np
-
 import gurobipy as gp
 from gurobipy import GRB
 
@@ -9,6 +7,7 @@ from .basesolver import BaseSolver
 
 LOGGER = logging.getLogger(__name__)
 logging.getLogger("gurobipy").setLevel(logging.ERROR)  # prevent duplicate gurobi output to console
+
 
 class LP(BaseSolver):
     """Solve the problem nice and steady!
@@ -40,19 +39,16 @@ class LP(BaseSolver):
 
             # add constraints
             for v, client in zip(var_c.values(), self.data[0]):
-                m.addConstrs(v <=   var_i[ingredients_dict[i]] for i in client.likes   )
-                m.addConstrs(v <= 1-var_i[ingredients_dict[i]] for i in client.dislikes)
+                m.addConstrs(v <=     var_i[ingredients_dict[i]] for i in client.likes   )
+                m.addConstrs(v <= 1 - var_i[ingredients_dict[i]] for i in client.dislikes)
 
             # Optimize model
             m.setParam(GRB.Param.MIPGap, 0)  # try to solve optimally
             m.optimize()
 
-            #for v in m.getVars():  # (produces too large output)
-            #    print('%s %g' % (v.varName, v.x))
-
             print('Obj: %g' % m.objVal)
             
-            self.solution = [ingredients_list[i] for i,v in var_i.items() if v.x]
+            self.solution = [ingredients_list[i] for i, v in var_i.items() if v.x]
             
         except gp.GurobiError as e:
             print('Error code ' + str(e.errno) + ': ' + str(e))
