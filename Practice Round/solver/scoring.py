@@ -12,8 +12,10 @@ class Score:
     scores: list = field(default_factory=list)
     total: int = 0
 
-    def add(self, diff_ingredients_sq):
-        pass
+    def add(self, other):
+        self.scores.append(other)
+        self.total += other
+
 
 def set_log_level(args):
     if args.debug:
@@ -29,7 +31,17 @@ def compute_score(file_in, file_out):
     :param file_out: output file (solution)
     :return: Score
     """
-    return 0
+    # read input and output files
+    _in = parse_input(file_in)
+    _out = parse_output(file_out)
+    s = Score()
+    for c in _in[0]:
+        # check if all likable ingredients are in,
+        # and none of the disliked ones
+        if c.likes.issubset(_out) and c.dislikes.isdisjoint(_out):
+            s.add(1)
+
+    return s
 
 
 if __name__ == '__main__':
