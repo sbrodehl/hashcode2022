@@ -108,19 +108,19 @@ Overall **0** points.
 
 ### A - An example
 
-Our submission scored **0** points.
+Our submission scored **2** points.
 
 ### B - Basic
 
-Our submission scored **0** points.
+Our submission scored **5** points.
 
 ### C - Coarse
 
-Our submission scored **0** points.
+Our submission scored **5** points.
 
 ### D - Difficult
 
-Our submission scored **0** points.
+Our submission scored **1805** points.
 
 ### E - Elaborate
 
