@@ -104,24 +104,34 @@ This means a submission of this output would score `2` points for this case, bec
 
 ## Scores
 
-Overall **0** points.
+Overall **3899** points.
 
 ### A - An example
 
 Our submission scored **2** points.
 
+![Likes and dislikes in percent of clients for input file 'A - Example'.](assets/a--dis-likes-percentage.png)
+
 ### B - Basic
 
 Our submission scored **5** points.
+
+![Likes and dislikes in percent of clients for input file 'B - Basic'.](assets/b--dis-likes-percentage.png)
 
 ### C - Coarse
 
 Our submission scored **5** points.
 
+![Likes and dislikes in percent of clients for input file 'C - Coarse'.](assets/c--dis-likes-percentage.png)
+
 ### D - Difficult
 
 Our submission scored **1805** points.
 
+![Likes and dislikes in percent of clients for input file 'D - Difficult'.](assets/d--dis-likes-percentage.png)
+
 ### E - Elaborate
 
-Our submission scored **0** points.
+Our submission scored **2082** points.
+
+![Likes and dislikes in percent of clients for input file 'E - Elaborate'.](assets/e--dis-likes-percentage.png)
