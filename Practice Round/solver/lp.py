@@ -24,8 +24,7 @@ class LP(BaseSolver):
         """
         C = len(self.data[0])
         I = len(self.data[1])
-        ingredients_list = list(self.data[1])
-        ingredients_dict = {i: idx for i, idx in zip(ingredients_list, range(I))}
+        ingredients = {i: idx for i, idx in zip(self.data[1], range(I))}
 
         try:
             # Create a new model
@@ -39,8 +38,8 @@ class LP(BaseSolver):
 
             # add constraints
             for v, client in zip(var_c.values(), self.data[0]):
-                m.addConstrs(v <=     var_i[ingredients_dict[i]] for i in client.likes   )
-                m.addConstrs(v <= 1 - var_i[ingredients_dict[i]] for i in client.dislikes)
+                m.addConstrs(v <=     var_i[ingredients[i]] for i in client.likes   )
+                m.addConstrs(v <= 1 - var_i[ingredients[i]] for i in client.dislikes)
 
             # Optimize model
             m.setParam(GRB.Param.MIPGap, 0)  # try to solve optimally
@@ -48,7 +47,7 @@ class LP(BaseSolver):
 
             print('Obj: %g' % m.objVal)
             
-            self.solution = [ingredients_list[i] for i, v in var_i.items() if v.x]
+            self.solution = [self.data[1][i] for i, v in var_i.items() if v.x]
             
         except gp.GurobiError as e:
             print('Error code ' + str(e.errno) + ': ' + str(e))
