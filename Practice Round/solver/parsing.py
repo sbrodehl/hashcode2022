@@ -58,4 +58,4 @@ def parse_output(file_out):
 def write_output(file_out, solution):
     LOGGER.debug("Writing solution '{}'".format(file_out))
     with open(file_out, 'w') as f:
-        f.write(f"{str(len(solution))} {' '.join(solution)}\n")
+        f.write(f"{str(len(solution))} {' '.join(sorted(solution))}\n")
