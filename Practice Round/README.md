@@ -42,13 +42,13 @@ Each character is one of the lowercase letters (a-z) or a digit (0-9).
 
 The input files can be found in [`input/`](input)
 
-| Input Data                                  |
-|---------------------------------------------|
-| [A - An example](input/a_an_example.in.txt) |
-| [B - Basic](input/b_basic.in.txt)           |
-| [C - Coarse](input/c_coarse.in.txt)         |
-| [D - Difficult](input/d_difficult.in.txt)   |
-| [E - Elaborate](input/e_elaborate.in.txt)   |
+| Input Data                                  | Clients | Ingredients |
+|---------------------------------------------|---------|-------------|
+| [A - An example](input/a_an_example.in.txt) | 3       | 6           |
+| [B - Basic](input/b_basic.in.txt)           | 5       | 6           |
+| [C - Coarse](input/c_coarse.in.txt)         | 10      | 10          |
+| [D - Difficult](input/d_difficult.in.txt)   | 9368    | 600         |
+| [E - Elaborate](input/e_elaborate.in.txt)   | 4986    | 10000       |
 
 ### Submission
 
