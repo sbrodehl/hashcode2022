@@ -32,13 +32,13 @@ def compute_score(file_in, file_out):
     :return: Score
     """
     # read input and output files
-    _in = parse_input(file_in)
-    _out = parse_output(file_out)
+    problem_set = parse_input(file_in)
+    solution = parse_output(file_out)
     s = Score()
-    for c in _in[0]:
+    for client in problem_set[0]:
         # check if all likable ingredients are in,
         # and none of the disliked ones
-        if c.likes.issubset(_out) and c.dislikes.isdisjoint(_out):
+        if client.likes.issubset(solution) and client.dislikes.isdisjoint(solution):
             s.add(1)
 
     return s
