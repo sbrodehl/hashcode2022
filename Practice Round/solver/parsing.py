@@ -31,6 +31,9 @@ def parse_input(file_in):
             ingredients.update(likes)
             ingredients.update(dislikes)
 
+    # sort and cast to list
+    ingredients = list(sorted(ingredients))
+
     LOGGER.info("Parsing '{}' - Done!".format(file_in))
     LOGGER.info(f"Found {C} clients (pizzas) with overall {len(ingredients)} different ingredients.")
 
