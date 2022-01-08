@@ -37,11 +37,10 @@ def parse_input(file_in):
     return clients, ingredients
 
 
-def parse_output(file_out, problem_set):
+def parse_output(file_out):
     """
     Parse output file
     :param file_out: output file name (solution)
-    :param problem_set: input problem set
     :return: None
     """
     LOGGER.info("Parsing '{}'".format(file_out))
