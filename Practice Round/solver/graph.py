@@ -11,7 +11,7 @@ LOGGER = logging.getLogger(__name__)
 class Graph(BaseSolver):
     """Solve the problem nice and steady!
     """
-    def __init__(self, input_str):
+    def __init__(self, input_str=None):
         super().__init__(input_str)
 
     def solve(self):

@@ -8,11 +8,11 @@ class BaseSolver(object):
     as needed in main.py.
     """
 
-    def __init__(self, input_str):
+    def __init__(self, input_str=None):
         """Initialisation of the given problem.
         """
         self.input_str = input_str
-        self.data = parse_input(self.input_str)
+        self.data = parse_input(self.input_str) if input_str is not None else None
         self.solution = []
 
     def solve(self):
