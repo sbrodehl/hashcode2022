@@ -21,13 +21,14 @@ def parse_input(file_in):
         for cid in range(C):
             likes = list(f.readline().strip().split(" "))
             L = int(likes[0])
-            likes = likes[1:]
+            likes = set(likes[1:])
             assert len(likes) == L
             dislikes = list(f.readline().strip().split(" "))
             D = int(dislikes[0])
-            dislikes = dislikes[1:]
+            dislikes = set(dislikes[1:])
             assert len(dislikes) == D
-            clients.append(Client(cid, set(likes), set(dislikes)))
+            assert set(likes).isdisjoint(set(dislikes))
+            clients.append(Client(cid, likes, dislikes))
             ingredients.update(likes)
             ingredients.update(dislikes)
 
