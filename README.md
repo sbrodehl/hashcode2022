@@ -2,7 +2,7 @@
 
 Solutions with code for [Google \# Hash Code 2022](https://codingcompetitions.withgoogle.com/hashcode).
 
-![Hash Code Teaser](HashCodeTeaser.png)
+![Hash Code Teaser Image](hashcode-teaser-2022.png)
 
 ## Online Qualifications
 
