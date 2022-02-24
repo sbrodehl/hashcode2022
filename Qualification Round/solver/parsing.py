@@ -29,11 +29,13 @@ def parse_input(file_in):
             contributors.append(Contributor(cidx, c_name, c_skills_l, 0))
         for pidx in range(p):
             p_name, p_d, p_s, p_b, p_r = list(f.readline().strip().split(" "))
-            p_roles = {}
+            p_roles = []
+            p_roles_d = {}
             for ridx in range(int(p_r)):
                 r_x, r_l = list(f.readline().strip().split(" "))
-                p_roles[r_x] = int(r_l)
-            projects.append(Project(pidx, p_name, int(p_d), int(p_s), int(p_b), p_roles, False))
+                p_roles.append((r_x, int(r_l)))
+                p_roles_d[r_x] = int(r_l)
+            projects.append(Project(pidx, p_name, int(p_d), int(p_s), int(p_b), p_roles, p_roles_d, False))
 
     LOGGER.info("Parsing '{}' - Done!".format(file_in))
     LOGGER.info(f"Found {c} contributors and {len(projects)} projects.")
@@ -50,16 +52,17 @@ def parse_output(file_out):
     LOGGER.info("Parsing '{}'".format(file_out))
     
     with open(file_out, 'r') as f:
-        ingredients = f.readline().strip().split(" ")
-        i = int(ingredients[0])
-        ingredients = ingredients[1:]
-        assert len(ingredients) == i
+        ingredients = int(f.readline().strip())
+
 
     LOGGER.info("Parsing '{}' - Done!".format(file_out))
-    return set(ingredients)
+    return None
 
 
 def write_output(file_out, solution):
     LOGGER.debug("Writing solution '{}'".format(file_out))
     with open(file_out, 'w') as f:
-        f.write(f"{str(len(solution))} {' '.join(sorted(solution))}\n")
+        f.write(f"{str(len(solution))}\n")
+        for p in solution:
+            f.write(f"{str(p.name)}\n")
+            f.write(f"{' '.join([t[1].name for t in p.team])}\n")

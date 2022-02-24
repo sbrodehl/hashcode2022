@@ -9,5 +9,6 @@ class Project:
     duration: int
     score: int
     best_before: int
-    roles: dict
+    roles: list
+    roles_dict: dict
     scheduled: bool

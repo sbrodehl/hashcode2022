@@ -1,10 +1,11 @@
 import logging
 from typing import List
-from collections import defaultdict
 
 from .basesolver import BaseSolver
 from .project import Project
 from .contributor import Contributor
+
+from tqdm import tqdm
 
 LOGGER = logging.getLogger(__name__)
 
@@ -25,13 +26,16 @@ class Greedy(BaseSolver):
         self.solution = []
         contributors: List[Contributor] = self.data[0]
         projects: List[Project] = self.data[1]
-        all_skills = set.union(*[set(c.skills.keys()) for c in contributors] + [set(p.roles.keys()) for p in projects])
+        all_skills = set.union(*[set(c.skills.keys()) for c in contributors] + [set([x[0] for x in p.roles]) for p in projects])
 
         LOGGER.info(f"Overall {len(all_skills)} skills/roles.")
-        step = -1
+        steps = set([0])
         total_score = 0
-        while True:
-            step += 1
+        tq = tqdm(total=len(projects))
+        while len(steps) > 0:
+            step = min(steps)
+            steps.remove(step)
+
             for c in contributors:
                 c.stupidity = - sum(c.skills.values())
             contributors = sorted(contributors, key=lambda c: c.stupidity, reverse=True)
@@ -44,24 +48,24 @@ class Greedy(BaseSolver):
                 p.possible_score = (p.score - max(0, (- p.remaining_time)))
                 p.util = p.possible_score / (p.duration + max(0, p.remaining_time))
 
-                p.viable = all([max_levels[r] >= p.roles[r] for r in p.roles])
+                p.viable = all([max_levels[r] >= p.roles_dict[r] for r in p.roles_dict])
 
             possible_score = 0
             for p in sorted([p for p in projects if p.viable and not p.scheduled], key=lambda p: p.util, reverse=True):
-                p.team = {}
+                p.team = []
                 assigned = set()
 
                 # assign contributors
-                for r in p.roles:
+                for r, rl in p.roles:
                     for c in contributors:
                         if c.id in assigned:
                             continue
-                        if c.free_from <= step and c.skills[r] >= p.roles[r]:
+                        if c.free_from <= step and c.skills[r] >= rl:
                             assigned.add(c.id)
-                            p.team[r] = c
+                            p.team.append((r, c))
                             break
                     else:
-                        p.team = {}
+                        p.team = []
                         possible_score += p.possible_score
                         break
                 else:
@@ -69,11 +73,14 @@ class Greedy(BaseSolver):
                     total_score += p.possible_score
                     p.scheduled = True
                     self.solution.append(p)
+                    tq.update()
                     # check level up
-                    for s, c in p.team.items():
+                    assert len(p.roles) == len(p.team)
+                    for idx, (r, c) in enumerate(p.team):
                         c.free_from = step + p.duration
-                        if c.skills[s] <= p.roles[s]:
-                            c.skills[s] += 1
+                        if c.skills[r] <= p.roles[idx][1]:
+                            c.skills[r] += 1
+                    steps.add(step + p.duration)
             if possible_score == 0:
                 break
         return True
