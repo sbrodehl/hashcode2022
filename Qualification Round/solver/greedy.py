@@ -60,7 +60,7 @@ class Greedy(BaseSolver):
                     for c in contributors:
                         if c.id in assigned:
                             continue
-                        if c.free_from <= step and c.skills[r] >= rl:
+                        if c.free_from <= step and (c.skills[r] >= rl or (c.skills[r] == rl - 1 and any([_c.skills[r] >= rl for (_, _c) in p.team]))):
                             assigned.add(c.id)
                             p.team.append((r, c))
                             break
