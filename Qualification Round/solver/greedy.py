@@ -45,7 +45,7 @@ class Greedy(BaseSolver):
                 if p.scheduled:
                     continue
                 p.remaining_time = p.best_before - step - p.duration
-                p.possible_score = (p.score - max(0, (- p.remaining_time)))
+                p.possible_score = max(0, (p.score - max(0, -p.remaining_time)))
                 p.util = p.possible_score / (p.duration + max(0, p.remaining_time))
 
                 p.viable = all([max_levels[r] >= p.roles_dict[r] for r in p.roles_dict])
@@ -70,6 +70,8 @@ class Greedy(BaseSolver):
                         break
                 else:
                     # project doable
+                    if p.possible_score < 0:
+                        breakpoint()
                     total_score += p.possible_score
                     p.scheduled = True
                     self.solution.append(p)
