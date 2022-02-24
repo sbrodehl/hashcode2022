@@ -22,7 +22,7 @@ class Greedy(BaseSolver):
 
         :return: True, if a solution is found, False otherwise
         """
-        solution = []
+        self.solution = []
         contributors: List[Contributor] = self.data[0]
         projects: List[Project] = self.data[1]
         all_skills = set.union(*[set(c.skills.keys()) for c in contributors] + [set(p.roles.keys()) for p in projects])
@@ -68,7 +68,7 @@ class Greedy(BaseSolver):
                     # project doable
                     total_score += p.possible_score
                     p.scheduled = True
-                    solution.append(p)
+                    self.solution.append(p)
                     # check level up
                     for s, c in p.team.items():
                         c.free_from = step + p.duration
