@@ -32,7 +32,7 @@ def parse_input(file_in):
             for ridx in range(int(p_r)):
                 r_x, r_l = list(f.readline().strip().split(" "))
                 p_roles[r_x] = int(r_l)
-            projects.append(Project(pidx, p_name, p_d, p_s, p_b, p_roles))
+            projects.append(Project(pidx, p_name, int(p_d), int(p_s), int(p_b), p_roles))
 
     LOGGER.info("Parsing '{}' - Done!".format(file_in))
     LOGGER.info(f"Found {c} contributors and {len(projects)} projects.")
