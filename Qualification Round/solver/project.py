@@ -10,3 +10,4 @@ class Project:
     score: int
     best_before: int
     roles: dict
+    scheduled: bool

@@ -7,3 +7,4 @@ class Contributor:
     id: int
     name: str
     skills: dict
+    free_from: int

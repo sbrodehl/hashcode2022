@@ -1,4 +1,5 @@
 import logging
+from collections import defaultdict
 
 from .contributor import Contributor
 from .project import Project
@@ -21,18 +22,18 @@ def parse_input(file_in):
         c, p = map(int, f.readline().strip().split(" "))
         for cidx in range(c):
             c_name, c_skills = list(f.readline().strip().split(" "))
-            c_skills_l = {}
+            c_skills_l = defaultdict(lambda: 0)
             for sidx in range(int(c_skills)):
                 s_name, s_level = list(f.readline().strip().split(" "))
                 c_skills_l[s_name] = int(s_level)
-            contributors.append(Contributor(cidx, c_name, c_skills_l))
+            contributors.append(Contributor(cidx, c_name, c_skills_l, 0))
         for pidx in range(p):
             p_name, p_d, p_s, p_b, p_r = list(f.readline().strip().split(" "))
             p_roles = {}
             for ridx in range(int(p_r)):
                 r_x, r_l = list(f.readline().strip().split(" "))
                 p_roles[r_x] = int(r_l)
-            projects.append(Project(pidx, p_name, int(p_d), int(p_s), int(p_b), p_roles))
+            projects.append(Project(pidx, p_name, int(p_d), int(p_s), int(p_b), p_roles, False))
 
     LOGGER.info("Parsing '{}' - Done!".format(file_in))
     LOGGER.info(f"Found {c} contributors and {len(projects)} projects.")
