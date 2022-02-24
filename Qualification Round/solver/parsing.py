@@ -34,7 +34,7 @@ def parse_input(file_in):
             for ridx in range(int(p_r)):
                 r_x, r_l = list(f.readline().strip().split(" "))
                 p_roles.append((r_x, int(r_l)))
-                p_roles_d[r_x] = int(r_l)
+                p_roles_d[r_x] = max(int(r_l), p_roles_d[r_x] if r_x in p_roles_d else 0)
             projects.append(Project(pidx, p_name, int(p_d), int(p_s), int(p_b), p_roles, p_roles_d, False))
 
     LOGGER.info("Parsing '{}' - Done!".format(file_in))
@@ -50,13 +50,16 @@ def parse_output(file_out):
     :return: None
     """
     LOGGER.info("Parsing '{}'".format(file_out))
-    
+    solution = []
     with open(file_out, 'r') as f:
-        ingredients = int(f.readline().strip())
-
+        p = int(f.readline().strip())
+        for pid in range(p):
+            p_name = f.readline().strip()
+            team = f.readline().strip().split(" ")
+            solution.append((p_name, team))
 
     LOGGER.info("Parsing '{}' - Done!".format(file_out))
-    return None
+    return solution
 
 
 def write_output(file_out, solution):
