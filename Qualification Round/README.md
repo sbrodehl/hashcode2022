@@ -270,7 +270,7 @@ In the end, projects Webserver (**10 points**), Logging (**3 points**) and WebCh
 
 ## Scores & Insights
 
-Overall **2,750,785** points (3443st place out of 9031).
+Overall **3,224,184** points (3443st place out of 9031).
 
 See the [complete scoreboard](https://codingcompetitions.withgoogle.com/hashcode/round/00000000008caae7) for the Online Qualifications.
 
@@ -340,3 +340,14 @@ Insights about this submission:
 - 800 contributors out of 800 worked on at least one project
 
 ### F - Find great mentors
+
+The submission scored **473,399** points.
+Insights about this submission:
+
+- projects completed: 4435 (22% of all projects)
+- projects completed before their "best before" time in days (scoring full points): 2868 (14% of all projects)
+- projects completed but scoring 0 points (because they were completed too long after their "best before" time): 1553 (7% of all projects)
+- number of times a contributor got mentored on a project: 67737
+- number of times a contributor increased their skill level thanks to completing a project: 82701
+- contributors were waiting for their next project to start 20.93 days on average
+- 1000 contributors out of 1000 worked on at least one project
