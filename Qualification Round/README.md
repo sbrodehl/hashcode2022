@@ -270,7 +270,7 @@ In the end, projects Webserver (**10 points**), Logging (**3 points**) and WebCh
 
 ## Scores & Insights
 
-Overall **3,224,184** points (3443st place out of 9031).
+Overall **3,224,184** points.
 
 Summing up all the best scores per data set a total of **4,813,509** points was possible. The top team _Make love, not war_ won with **4,220,236** points.
 
