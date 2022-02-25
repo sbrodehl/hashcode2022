@@ -270,7 +270,7 @@ In the end, projects Webserver (**10 points**), Logging (**3 points**) and WebCh
 
 ## Scores & Insights
 
-Overall **2,743,951** points (3443st place out of 9031).
+Overall **2,750,785** points (3443st place out of 9031).
 
 See the [complete scoreboard](https://codingcompetitions.withgoogle.com/hashcode/round/00000000008caae7) for the Online Qualifications.
 
@@ -328,7 +328,7 @@ Insights about this submission:
 
 ### E - Exceptional skills
 
-The submission scored **1,607,481** points.
+The submission scored **1,614,315** points.
 Insights about this submission:
 
 - projects completed: 6000 (60% of all projects)
