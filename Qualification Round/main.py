@@ -43,6 +43,7 @@ if __name__ == '__main__':
     if args.score:
         scoring = importlib.import_module("solver.scoring")
         score = scoring.compute_score(args.input, args.output)
+        score.print_insights()
         exit(0)
 
     # get the chosen solver

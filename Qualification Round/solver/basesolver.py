@@ -25,4 +25,4 @@ class BaseSolver(object):
     def write(self, output_str):
         write_output(output_str, self.solution)
         s = compute_score(self.input_str, output_str)
-        print("Score for {}: {} points".format(self.input_str, s.total))
+        s.print_insights()
