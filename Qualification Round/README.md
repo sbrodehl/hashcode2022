@@ -272,6 +272,8 @@ In the end, projects Webserver (**10 points**), Logging (**3 points**) and WebCh
 
 Overall **3,224,184** points (3443st place out of 9031).
 
+Summing up all the best scores per data set a total of **4,813,509** points was possible. The top team _Make love, not war_ won with **4,220,236** points.
+
 See the [complete scoreboard](https://codingcompetitions.withgoogle.com/hashcode/round/00000000008caae7) for the Online Qualifications.
 
 ### A - An example
@@ -300,6 +302,8 @@ Insights about this submission:
 - contributors were waiting for their next project to start 19.03 days on average
 - 49 contributors out of 50 worked on at least one project
 
+The top score of this data set during the qualification round was **1,005,020** by team _<(OvO)>_
+
 ### C - Collaboration
 
 The submission scored **161,820** points.
@@ -312,6 +316,8 @@ Insights about this submission:
 - number of times a contributor increased their skill level thanks to completing a project: 15151
 - contributors were waiting for their next project to start 11658.60 days on average
 - 1494 contributors out of 1500 worked on at least one project
+
+The top score of this data set during the qualification round was **288,508** by team _Scheming Kittens_
 
 ### D - Dense schedule
 
@@ -326,6 +332,8 @@ Insights about this submission:
 - contributors were waiting for their next project to start 35.94 days on average
 - 325 contributors out of 500 worked on at least one project
 
+The top score of this data set during the qualification round was **674,945** by team _Make love, not war_
+
 ### E - Exceptional skills
 
 The submission scored **1,614,315** points.
@@ -339,6 +347,8 @@ Insights about this submission:
 - contributors were waiting for their next project to start 53.17 days on average
 - 800 contributors out of 800 worked on at least one project
 
+The top score of this data set during the qualification round was **1,650,488** by team _QR-Coders_
+
 ### F - Find great mentors
 
 The submission scored **473,399** points.
@@ -351,3 +361,6 @@ Insights about this submission:
 - number of times a contributor increased their skill level thanks to completing a project: 82701
 - contributors were waiting for their next project to start 20.93 days on average
 - 1000 contributors out of 1000 worked on at least one project
+
+The top score of this data set during the qualification round was **1,194,515** by team _Proof by Submission_
+
