@@ -1,5 +1,6 @@
 import logging
 from typing import List
+from collections import defaultdict
 
 from .basesolver import BaseSolver
 from .project import Project
@@ -27,6 +28,8 @@ class Greedy(BaseSolver):
         contributors: List[Contributor] = self.data[0]
         projects: List[Project] = self.data[1]
         all_skills = set.union(*[set(c.skills.keys()) for c in contributors] + [set([x[0] for x in p.roles]) for p in projects])
+        max_levels = {s: max([c.skills[s] if s in c.skills else 0 for c in contributors]) for s in all_skills}
+        update_levels = defaultdict(lambda: [])
 
         LOGGER.info(f"Overall {len(all_skills)} skills/roles.")
         steps = set([0])
@@ -36,10 +39,13 @@ class Greedy(BaseSolver):
             step = min(steps)
             steps.remove(step)
 
+            for r in update_levels:
+                max_levels[r] = max(max_levels[r], max(update_levels[r]))
+            update_levels.clear()
+
             for c in contributors:
                 c.stupidity = - sum(c.skills.values())
             contributors = sorted(contributors, key=lambda c: c.stupidity, reverse=True)
-            max_levels = {s: max([c.skills[s] if s in c.skills else 0 for c in contributors]) for s in all_skills}
 
             for p in projects:
                 if p.scheduled:
@@ -48,7 +54,7 @@ class Greedy(BaseSolver):
                 p.possible_score = max(0, (p.score - max(0, -p.remaining_time)))
                 p.util = p.possible_score / (p.duration + max(0, p.remaining_time))
 
-                p.viable = all([max_levels[r] >= p.roles_dict[r] for r in p.roles_dict])
+                p.viable = all(max_levels[r] >= p.roles_dict[r] for r in p.roles_dict)
 
             possible_score = 0
             for p in sorted([p for p in projects if p.viable and not p.scheduled], key=lambda p: p.util, reverse=True):
@@ -60,7 +66,7 @@ class Greedy(BaseSolver):
                     for c in contributors:
                         if c.id in assigned:
                             continue
-                        if c.free_from <= step and (c.skills[r] >= rl or (c.skills[r] == rl - 1 and any([_c.skills[r] >= rl for (_, _c) in p.team]))):
+                        if c.free_from <= step and (c.skills[r] >= rl or (c.skills[r] == rl - 1 and any(_c.skills[r] >= rl for (_, _c) in p.team))):
                             assigned.add(c.id)
                             p.team.append((r, c))
                             break
@@ -82,6 +88,7 @@ class Greedy(BaseSolver):
                         c.free_from = step + p.duration
                         if c.skills[r] <= p.roles[idx][1]:
                             c.skills[r] += 1
+                            update_levels[r].append(c.skills[r])
                     steps.add(step + p.duration)
             if possible_score == 0:
                 break
